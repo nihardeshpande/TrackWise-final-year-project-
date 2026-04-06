@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings | TrackWise</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+
+<div class="settings-layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <!-- FIXED HEADER -->
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="back-btn">←</a>
+      <h2>Settings</h2>
+    </div>
+
+    <button onclick="showSection('profile')" class="active">Profile</button>
+    <button onclick="showSection('theme')">Theme</button>
+    <button onclick="showSection('focus')">Focus</button>
+    <button onclick="showSection('notifications')">Notifications</button>
+    <button onclick="showSection('analysis')">Analysis</button>
+    <button onclick="showSection('security')">Security</button>
+    <button onclick="showSection('about')">About</button>
+
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Profile -->
+    <div id="profile" class="section active-section">
+      <h3>Profile</h3>
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Email">
+      <button class="save-btn">Save Changes</button>
+    </div>
+
+    <!-- Theme -->
+    <div id="theme" class="section">
+      <h3>Theme</h3>
+      <p>Dark mode is currently enabled.</p>
+      <p class="note">Light mode coming soon.</p>
+    </div>
+
+    <!-- Focus -->
+    <div id="focus" class="section">
+      <h3>Focus Settings</h3>
+      <label>Pomodoro Duration</label>
+      <input type="number" value="25">
+
+      <label>Short Break</label>
+      <input type="number" value="5">
+
+      <label>Long Break</label>
+      <input type="number" value="15">
+    </div>
+
+    <!-- Notifications -->
+    <div id="notifications" class="section">
+      <h3>Notifications</h3>
+      <label>Reminder Time</label>
+      <input type="time">
+    </div>
+
+    <!-- Data -->
+    <div id="analysis" class="section">
+      <h3>Data & Analysis</h3>
+      <button class="danger-btn">Reset Progress</button>
+      <button class="secondary-btn">Export Data</button>
+    </div>
+
+    <!-- Security -->
+    <div id="security" class="section">
+      <h3>Security</h3>
+      <input type="password" placeholder="New Password">
+      <button class="save-btn">Update Password</button>
+    </div>
+
+    <!-- About -->
+    <div id="about" class="section">
+      <h3>About</h3>
+      <p>TrackWise</p><br>
+      <p>
+        TrackWise is a smart productivity management platform designed to help users 
+         organize tasks, track goals, and improve focus through structured workflows. 
+         It integrates task management, goal tracking, focus sessions, and analytics 
+         into one unified system. The application is developed using HTML, CSS, and 
+         JavaScript for the frontend, Python for backend processing, and SQLite for 
+         efficient data storage, ensuring a responsive and scalable user experience.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="settings.js"></script>
+</body>
+</html>

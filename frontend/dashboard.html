@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrackWise Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h1 class="logo">
+       <span class="track">Track</span><span class="wise">Wise</span>
+    </h1>
+
+    <nav class="menu">
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="homepage.html">Home</a>
+      <a href="my-tasks.html">My Tasks</a>
+      <a href="my-goals.html">My Goals</a>
+      <a href="pomodoro.html?from=dashboard">Pomodoro</a>
+      <a href="focus-session.html">Focus Session</a>
+      <a href="progress-analysis.html">Progress Analysis</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a href="settings.html" class="settings-link"> Settings</a>
+      <a class="logout"> Log Out</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <input type="text" placeholder="Search..." />
+      <div class="avatar"></div>
+    </header>
+
+    <!-- Overview -->
+    <section class="overview">
+      <h2>Overview</h2>
+      <p class="subtext">
+        Track your productivity, focus sessions, and goal progress in one place.
+      </p>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="card">
+          <h3>Completed Tasks</h3>
+          <p class="number" id="completedTasks">0</p>
+        </div>
+        <div class="card">
+          <h3>Total Focus Time</h3>
+          <p class="number" id="totalFocusTime">0 mins</p>
+        </div>
+        <div class="card">
+          <h3>Goals Completed</h3>
+          <p class="number" id="goalsCompleted">0</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tasks -->
+    <section class="tasks">
+      <h2>Suggested & Pending Tasks</h2>
+
+      <div class="task-grid">
+        <div class="task-card">
+          <span class="tag ai">AI Suggested</span>
+          <h3>Revise DBMS Notes</h3>
+          <p>Based on upcoming exams and incomplete topics.</p>
+          <span class="time">⏱ 40 mins</span>
+        </div>
+
+        <div class="task-card">
+          <span class="tag priority">High Priority</span>
+          <h3>Finish Mini Project</h3>
+          <p>Deadline approaching this week.</p>
+          <span class="time">⏱ 1 hr 30 mins</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Productivity -->
+    <section class="productivity">
+      <h2>Productivity Overview</h2>
+
+      <div class="productivity-grid">
+        <div class="card">
+          <h3>Today's Focus</h3>
+          <p class="big">3h 45m</p>
+          <small>+12% from yesterday</small>
+        </div>
+
+        <div class="card">
+          <h3>Time Allocation</h3>
+          <ul class="breakdown">
+            <li>Deep Work <span>40%</span></li>
+            <li>Study <span>35%</span></li>
+            <li>Breaks <span>25%</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Goal Progress</h3>
+          <progress value="60" max="100"></progress>
+          <p>3 of 5 goals completed</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Check if user is logged in
+    if (!localStorage.getItem('userID')) {
+      window.location.href = 'auth.html';
+    }
+
+    const userID = parseInt(localStorage.getItem('userID'));
+    const userName = localStorage.getItem('name');
+    const API_URL = 'http://127.0.0.1:5000';
+
+    // Load analytics
+    async function loadAnalytics() {
+      try {
+        const res = await fetch(`${API_URL}/analytics/summary/${userID}`);
+        const data = await res.json();
+        document.getElementById('completedTasks').textContent = data.tasksCompleted || 0;
+        document.getElementById('totalFocusTime').textContent = Math.floor((data.totalFocusTime || 0) / 60) + ' mins';
+        document.getElementById('goalsCompleted').textContent = '0'; // TODO: implement in analytics
+      } catch (err) {
+        console.error('Failed to load analytics', err);
+        document.getElementById('completedTasks').textContent = '0';
+        document.getElementById('totalFocusTime').textContent = '0 mins';
+        document.getElementById('goalsCompleted').textContent = '0';
+      }
+    }
+
+    loadAnalytics();
+    setInterval(loadAnalytics, 30000); // Refresh every 30 seconds
+
+    document.querySelector('.logout').addEventListener('click', function() {
+      localStorage.removeItem('userID');
+      localStorage.removeItem('name');
+      window.location.href = 'auth.html';
+    });
+  </script>
+
+</body>
+</html>
+

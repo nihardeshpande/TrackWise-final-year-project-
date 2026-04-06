@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #0d0d14;
+  color: #e7e6f2;
+}
+
+/* Layout */
+.settings-layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #161627;
+  border-right: 1px solid #2a2342;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fixed header */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #e7e6f2; 
+}
+
+/* Arrow */
+.sidebar-header .back-btn {
+  font-size: 20px;
+  color: #a78bfa;
+  text-decoration: none;
+}
+
+/* Sidebar buttons */
+.sidebar button {
+  background: transparent;
+  border: none;
+  color: #cfccee;
+  text-align: left;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+  background: #2a2342;
+  color: #a78bfa;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 40px;
+}
+
+/* Sections */
+.section {
+  display: none;
+}
+
+.active-section {
+  display: block;
+}
+
+.section h3 {
+  color: #a78bfa;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+  display: block;
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #2a2342;
+  background: #0d0d14;
+  color: #e7e6f2;
+}
+
+/* Buttons */
+.save-btn {
+  background: #a78bfa;
+  color: #12121c;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid #2a2342;
+  color: #cfccee;
+  padding: 8px 14px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.danger-btn {
+  background: #ff6b6b;
+  color: #12121c;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+
+/* Notes */
+.note {
+  color: #cfccee;
+  font-size: 14px;
+}
